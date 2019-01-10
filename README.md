@@ -24,7 +24,6 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 %matplotlib inline
-#We are setting the seed to assure you get the same answers on quizzes as we set up
 random.seed(42)
 ```
 
