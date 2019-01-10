@@ -28,7 +28,7 @@ import matplotlib.pyplot as plt
 random.seed(42)
 ```
 
-`1.` Now, read in the `ab_data.csv` data. Store it in `df`.
+`1.` Read in the `ab_data.csv` data, and store it in `df`.
 
 a. Read in the dataset and take a look at the top few rows:
 
@@ -170,7 +170,7 @@ df.query('(group=="control" and landing_page=="new_page") or (group=="treatment"
 
 
 
-f. Do any of the rows have missing values?
+f. Detecting missing values
 
 
 ```python
@@ -247,7 +247,7 @@ df2[df2['user_id'].duplicated()]['user_id']
 
 
 
-c. The row information for the duplicated **user_id**? 
+c. The row information for the duplicated **user_id**
 
 
 ```python
@@ -375,26 +375,11 @@ d. The probability that an individual received the new page
 
 `1.` Here, we want to assume that the old page is better unless the new page proves to be definitely better at a Type I error rate of 5%, so the null and alternative hypotheses would be:
 
-> Null：**$p_{old}$** <= **$p_{new}$**；Alternative：**$p_{new}$** > **$p_{old}$**
+> Null：P(old) <= P(new)；Alternative：P(new) > P(old)
 
-`2.` Assume under the null hypothesis, $p_{new}$ and $p_{old}$ both have "true" success rates equal to the **converted** success rate regardless of page - that is $p_{new}$ and $p_{old}$ are equal. Furthermore, assume they are equal to the **converted** rate in **ab_data.csv** regardless of the page. <br><br>
+`2.` Assume under the null hypothesis, P(new) and P(old) both have "true" success rates equal to the **converted** success rate regardless of page - that is P(new) and P(old) are equal. Furthermore, assume they are equal to the **converted** rate in **ab_data.csv** regardless of the page. <br><br>
 
-a. The **convert rate** for $p_{new}$ under the null？
-
-
-```python
-convert_rate = df2['converted'].mean()
-convert_rate
-```
-
-
-
-
-    0.11959667567149027
-
-
-
-b. The **convert rate** for $p_{old}$ under the null?
+a. The **convert rate** for P(new) under the null？
 
 
 ```python
@@ -409,7 +394,22 @@ convert_rate
 
 
 
-c.  $n_{new}$
+b. The **convert rate** for P(old) under the null?
+
+
+```python
+convert_rate = df2['converted'].mean()
+convert_rate
+```
+
+
+
+
+    0.11959667567149027
+
+
+
+c.  N(new)
 
 
 ```python
@@ -424,7 +424,7 @@ n_new
 
 
 
-d.  $n_{old}$
+d.  N(old)
 
 
 ```python
@@ -439,7 +439,7 @@ n_old
 
 
 
-e. Simulate $n_{new}$ transactions with a convert rate of $p_{new}$ under the null.
+e. Simulate N(new) transactions with a convert rate of P(new) under the null.
 
 
 ```python
@@ -454,7 +454,7 @@ new_page_converted
 
 
 
-f. Simulate $n_{old}$ transactions with a convert rate of $p_{old}$ under the null.
+f. Simulate N(old) transactions with a convert rate of P(old) under the null.
 
 
 ```python
@@ -469,7 +469,7 @@ old_page_converted
 
 
 
-g. $p_{new}$ - $p_{old}$ for the simulated values from part (e) and (f)
+g. P(new) - P(old) for the simulated values from part (e) and (f)
 
 
 ```python
@@ -484,7 +484,7 @@ diff
 
 
 
-h. Simulate 10,000 $p_{new}$ - $p_{old}$ values using the same process similarly to the one in parts **a. through g.** above.
+h. Simulate 10,000 P(new) - P(old) values using the same process similarly to the one in parts **a. through g.** above.
 
 
 ```python
@@ -1678,7 +1678,7 @@ print(summary)
 
 e. Comparison with **Part II**
 
-The relevant p-value is 0.190. The reason why it is different from the one in part II is that we use a two tailed test instead of one tailed test here. Since the alternative hypothesis is **$p_{new}$** > **$p_{old}$**, actually two tailed test is not appropriate
+The relevant p-value is 0.190. The reason why it is different from the one in part II is that we use a two tailed test instead of one tailed test here. Since the alternative hypothesis is P(new) > P(old), actually two tailed test is not appropriate
 
 f. Add an additional effect based on which country a user lives
 
