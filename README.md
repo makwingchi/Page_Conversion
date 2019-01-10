@@ -24,6 +24,7 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 %matplotlib inline
+
 random.seed(42)
 ```
 
